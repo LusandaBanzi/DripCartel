@@ -1,0 +1,59 @@
+name: Deploy DripCartel frontend to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare frontend configuration
+        env:
+          DRIP_API_BASE_URL: ${{ vars.DRIP_API_BASE_URL }}
+        run: |
+          if [ -z "$DRIP_API_BASE_URL" ]; then
+            echo "Missing repository variable DRIP_API_BASE_URL."
+            echo "Set it to the public HTTPS URL of the DripCartel API before deploying."
+            exit 1
+          fi
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          p = Path("frontend/src/scripts/config.js")
+          s = p.read_text()
+          s = s.replace('"__DRIP_API_BASE_URL__"', '"' + os.environ["DRIP_API_BASE_URL"].rstrip("/") + '"')
+          p.write_text(s)
+          PY
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload frontend artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./frontend
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

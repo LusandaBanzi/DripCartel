@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09090b">
+    <meta name="description" content="DripCartel — premium streetwear for the Dripists.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DripCartel">
+    <meta property="og:title" content="DripCartel — For The Dripists">
+    <meta property="og:description" content="DripCartel — premium streetwear for the Dripists.">
+    <meta property="og:image" content="assets/dripcartel-story.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DripCartel — For The Dripists">
+    <meta name="twitter:description" content="DripCartel — premium streetwear for the Dripists.">
+    <meta name="twitter:image" content="assets/dripcartel-story.webp">
+    <title>DripCartel — For The Dripists</title>
+    <link rel="icon" href="assets/dripcartel-icon.webp">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/home.css">
+</head>
+<body>
+<div id="transitionOverlay" class="transition-overlay"><img src="assets/dripcartel-icon.webp" alt="DripCartel" width="696" height="799" decoding="async"></div>
+<header>
+    <a class="brand" href="index.html"><img src="assets/dripcartel-icon.webp" alt="DripCartel"><span class="brand-lockup"><strong class="brand-name">DRIP<span>CARTEL</span></strong><small>FOR THE DRIPISTS</small></span></a>
+    <nav id="mainNav">
+        <a href="#shop">Shop</a><a href="#shop">Categories</a><a href="#story">Our Story</a><a href="#journal">Journal</a><a href="account.html" data-transition>Account</a>
+    </nav>
+    <div class="actions">
+        <button class="icon" id="themeBtn" aria-label="Toggle theme">◐</button>
+        <button class="icon" id="searchBtn" aria-label="Search">⌕</button>
+        <button class="icon menu" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+        <a href="#shop">Shop</a>
+        <a href="#shop">Categories</a>
+        <a href="#story">Our Story</a>
+        <a href="#journal">Journal</a>
+        <a href="account.html" data-transition>Account</a>
+    </nav>
+</div>
+
+
+<div class="search-panel" id="searchPanel">
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search the collection...">
+    <button id="closeSearch" aria-label="Close search">×</button>
+    <div class="search-results" id="searchResults" aria-live="polite"></div>
+    <div class="private-access" id="privateAdminAccess" hidden aria-live="polite">
+        <span>Private store access unlocked.</span>
+        <a class="btn ghost" href="admin.html" data-transition>Open Admin</a>
+    </div>
+</div>
+
+<main>
+    <section class="hero">
+        <div>
+            <div class="kicker">EST. 2025 · SOUTH AFRICA</div>
+            <h1>PURCHASE YOUR NEXT<br><em>DRIP.</em></h1>
+            <p>DripCartel is a visual language for people who create their own identity. Clean silhouettes, expressive graphics and a community built around individuality.</p>
+            <div class="buttons"><a class="btn primary" href="#shop">Shop the collection</a><a class="btn ghost" href="#story">Enter the story</a></div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card carousel-card" id="heroCarousel" aria-label="DripCartel product image carousel">
+                <div class="product-carousel">
+                    <div class="carousel-track" id="heroCarouselTrack">
+                        <div class="carousel-slide"><img src="assets/dripcartel-story.webp" alt="DripCartel campaign" width="1080" height="1080" fetchpriority="high" decoding="async"></div>
+                        <div class="carousel-slide"><img src="assets/display-1.webp" alt="DripCartel hoodie collection display" width="1080" height="1080" loading="lazy" decoding="async"></div>
+                        <div class="carousel-slide"><img src="assets/display-2.webp" alt="DripCartel white graphic hoodie display" width="1080" height="1080" loading="lazy" decoding="async"></div>
+                        <div class="carousel-slide"><img src="assets/display-3.webp" alt="DripCartel hoodie colour collection" width="1080" height="1080" loading="lazy" decoding="async"></div>
+                    </div>
+                    <div class="carousel-dots" id="heroDots" aria-label="Choose product image"></div>
+                </div>
+            </div>
+            <div class="floating f1">THE DRIPISTS · </div><div class="floating f2">FOR THE CULTURE · EST. 2025</div>
+        </div>
+    </section>
+
+    <section class="section" id="shop">
+        <div class="heading"><div><div class="kicker"> / SHOP BY CATEGORY</div><h2>Find your <span>Drip.</span></h2></div><p>Browse the full collection, then filter by category or sort by price.</p></div>
+        <div class="shop-tools"><div class="filters" id="filters">
+            <button class="filter active" data-filter="All">All</button>
+            <button class="filter" data-filter="T-Shirts">T-Shirts</button>
+            <button class="filter" data-filter="Hoodies">Hoodies</button>
+            <button class="filter" data-filter="Tote Bags">Tote Bags</button>
+            <button class="filter" data-filter="Caps">Caps</button>
+            <button class="filter" data-filter="Trousers">Trousers</button>
+        </div><select id="sortProducts" aria-label="Sort products"><option value="featured">Featured</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option></select></div>
+        <div class="products" id="products"></div>
+    </section>
+
+    <section class="story" id="story">
+        <div class="story-media"><div class="story-flip"><img class="story-image-front" src="assets/storytelling.webp" alt="DripCartel campaign" loading="lazy" decoding="async"><img class="story-image-back" src="assets/dripcartel-story.webp" alt="DripCartel story alternate view" loading="lazy" decoding="async"></div><span class="story-label">THE DRIPCARTEL STORY · 2025</span></div>
+        <div class="story-copy"><div class="kicker">/ THE STORY BEHIND DRIPCARTEL</div><h2>Not just clothes.<br><span>It's a statement.</span></h2>
+            <p>DripCartel was established in 2025 from a love for creativity, street culture and the freedom to build your own identity.</p>
+            <div class="points"><div class="point"><b>01</b><strong>CREATE</strong><small>Make it yours.</small></div><div class="point"><b>02</b><strong>MOVE</strong><small>Never stand still.</small></div><div class="point"><b>03</b><strong>DRIP</strong><small>Wear the energy.</small></div></div>
+        </div>
+    </section>
+
+    <section class="section" id="journal"><div class="manifesto"><div class="kicker">THE DRIPIST MANIFESTO</div><h2 class="journal-title" aria-label="DON'T FOLLOW THE UNIFORM.">DON'T FOLLOW<br><span class="journal-reveal journal-line-accent">THE UNIFORM.</span></h2><p class="journal-copy">Your clothes are part of your language. Wear what feels like you. Build the fit. Make the room notice.</p></div></section>
+</main>
+
+<footer>
+    <div><a class="brand" href="index.html"><img src="assets/dripcartel-icon.webp" alt=""><span>DRIP<span>CARTEL</span></span></a><small>FOR THE DRIPISTS · EST. 2025</small></div>
+    <div class="footer-links"><a href="#shop">Shop</a><a href="#story">Our Story</a><a href="account.html" data-transition>My Account</a><a href="https://api.whatsapp.com/send?phone=27731659816" target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a></div>
+    <div class="footer-copy">© <span id="year"></span> DripCartel · Designed for the Dripists.</div>
+</footer>
+
+<!-- CART BUTTON — persistent, fixed, visible on all pages -->
+<button class="cart" id="cartBtn">CART · <span id="cartCount">0</span></button>
+
+<div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal-box" role="dialog" aria-modal="true" aria-labelledby="productModalTitle" tabindex="-1">
+        <button class="modal-close" id="closeProduct" type="button" aria-label="Close product details">×</button>
+        <div id="productDetail"></div>
+    </div>
+</div>
+
+<!-- TOAST: centered pop-up for cart & wishlist -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="cart-modal" id="cartModal" aria-hidden="true">
+    <div class="cart-box" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1">
+        <button class="cart-close" id="closeCart" type="button" aria-label="Close cart">×</button>
+        <div class="kicker">YOUR CART</div>
+        <h2 id="cartTitle">Your <span>Drip.</span></h2>
+        <div id="cartItems"></div>
+        <div class="cart-total"><span>Total</span><strong id="cartTotal">R0.00</strong></div>
+        <div class="delivery-total"><span>Delivery</span><strong id="deliveryFee">Free</strong></div>
+        <button class="btn primary full" id="checkoutBtn" type="button">Checkout</button>
+    </div>
+</div>
+
+<div class="cart-modal checkout-modal" id="checkoutModal" aria-hidden="true">
+    <div class="cart-box checkout-box" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" tabindex="-1">
+        <button class="cart-close" id="closeCheckout" type="button" aria-label="Close checkout">×</button>
+        <div class="kicker">CHECKOUT</div>
+        <h2 id="checkoutTitle">Delivery <span>details.</span></h2>
+        <div class="checkout-details" id="checkoutDetails">
+            <p class="checkout-details-title">Delivery details</p>
+            <label for="checkoutName">Full name<input id="checkoutName" type="text" autocomplete="name" required></label>
+            <label for="checkoutEmail">Email address<input id="checkoutEmail" type="email" autocomplete="email" required></label>
+            <label for="checkoutPhone">WhatsApp / cellphone number<input id="checkoutPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 082 123 4567" pattern="[0-9+() -]{7,}" required></label>
+            <label class="checkout-wide" for="checkoutAddress">Street address<input id="checkoutAddress" type="text" autocomplete="street-address" required></label>
+            <label for="checkoutCity">City / town<input id="checkoutCity" type="text" autocomplete="address-level2" placeholder="Witbank / Emalahleni" required></label>
+            <label for="checkoutProvince">Province / state<input id="checkoutProvince" type="text" autocomplete="address-level1" required></label>
+            <label for="checkoutPostal">Postal code<input id="checkoutPostal" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9A-Za-z -]{3,10}" required></label>
+            <label for="checkoutCountryDisplay">Delivery country<input id="checkoutCountryDisplay" type="text" value="South Africa" readonly><input id="checkoutCountry" type="hidden" value="ZA"></label>
+        </div>
+        <div class="delivery-total"><span>Delivery</span><strong>Free Around Witbank</strong></div>
+        <button class="btn primary full" id="confirmCheckoutBtn" type="button">Complete checkout</button>
+    </div>
+</div>
+
+<div class="cart-modal payment-modal" id="paymentModal" aria-hidden="true">
+    <div class="cart-box payment-box" role="dialog" aria-modal="true" aria-labelledby="paymentTitle" tabindex="-1">
+        <button class="cart-close" id="closePayment" type="button" aria-label="Close payment details">×</button>
+        <div id="paymentContent" class="payment-content"></div>
+    </div>
+</div>
+
+<script src="src/scripts/config.js"></script>
+<script src="src/scripts/store.js"></script>
+<script src="src/scripts/home.js" defer></script>
+
+</body>
+</html>

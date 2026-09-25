@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow,noarchive"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DripCartel — Admin Dashboard</title>
+<link rel="icon" href="assets/dripcartel-icon.webp"><link rel="stylesheet" href="src/styles/style.css"><link rel="stylesheet" href="src/styles/admin.css">
+</head>
+<body data-page="admin">
+<div class="admin-auth" id="adminAuth">
+  <div class="admin-auth-card">
+    <p class="eyebrow">RESTRICTED ACCESS</p>
+    <img src="assets/dripcartel-icon.webp" alt="DripCartel" class="admin-auth-logo">
+    <h1 id="adminAuthTitle">Admin <span>access.</span></h1>
+    <p id="adminAuthDescription">Checking secure administrator setup…</p>
+    <form id="adminSetupForm" hidden>
+      <label>Administrator email<input id="adminSetupEmail" type="email" autocomplete="email" required></label>
+      <label>Create a new password<input id="adminSetupPassword" type="password" minlength="12" autocomplete="new-password" required></label>
+      <label>Bootstrap token (if required)<input id="adminSetupToken" type="password" autocomplete="off" placeholder="Only if configured by the owner"></label>
+      <label>Confirm password<input id="adminSetupPasswordConfirm" type="password" minlength="12" autocomplete="new-password" required></label>
+      <small class="password-rule">12+ characters with uppercase, lowercase, a number and a special character.</small>
+      <button class="btn primary" type="submit">Create administrator account</button>
+    </form>
+    <form id="adminLoginForm" hidden>
+      <label>Administrator email<input id="adminEmail" type="email" autocomplete="username" required></label>
+      <label>Password<input id="adminPassword" type="password" autocomplete="current-password" required></label>
+      <button class="btn primary" type="submit">Sign in securely</button>
+    </form>
+    <p class="admin-auth-error" id="adminAuthError" role="alert"></p>
+    <p class="admin-security-note">Exactly one administrator account is allowed. Credentials stay server-side and are never stored in browser JavaScript.</p>
+  </div>
+</div>
+<div id="transitionOverlay" class="transition-overlay"><img src="assets/dripcartel-icon.webp" alt="DripCartel"></div>
+<div class="admin-shell">
+<aside class="admin-sidebar" id="adminSidebar">
+  <a class="admin-brand" href="index.html" data-transition><img src="assets/dripcartel-icon.webp"><div><b>DRIP<span>CARTEL</span></b><small class="brand-motto">FOR THE DRIPISTS</small><small class="admin-label">ADMIN STUDIO</small></div></a>
+  <nav class="admin-nav">
+    <p>STORE</p>
+    <a href="#dashboard" class="admin-link active" data-section="dashboard">⌂ <span>Dashboard</span></a>
+    <a href="#products" class="admin-link" data-section="products">▣ <span>Products</span></a>
+    <a href="#orders" class="admin-link" data-section="orders">◫ <span>Orders</span></a>
+    <a href="#customers" class="admin-link" data-section="customers">♙ <span>Customers</span></a>
+    <p>COMMERCE</p>
+    <a href="#discounts" class="admin-link" data-section="discounts">% <span>Discounts</span></a>
+    <a href="#shipping" class="admin-link" data-section="shipping">⌁ <span>Shipping</span></a>
+    <p>SYSTEM</p>
+    <a href="#settings" class="admin-link" data-section="settings">⚙ <span>Settings</span></a>
+    <a href="index.html" data-transition>↗ <span>View Store</span></a>
+  </nav>
+  <div class="admin-side-footer"><img src="assets/dripcartel-icon.webp"><span>For The Dripists<br><small>Est. 2025</small></span></div>
+</aside>
+
+<main class="admin-content">
+<header class="admin-topbar">
+  <button class="admin-mobile-btn" id="adminMenuBtn">☰</button>
+  <div><p class="eyebrow">DRIPCARTEL CONTROL</p><h1 id="sectionTitle">Dashboard</h1></div>
+  <div class="admin-user"><button class="icon-btn" id="themeBtn">☾</button><div class="admin-avatar">LM</div><div><b>Administrator</b><small>Store Owner</small></div></div>
+</header>
+
+<section id="dashboard" class="admin-section active-section">
+  <div class="admin-welcome"><div><p class="eyebrow">OVERVIEW</p><h2>Welcome back. <span>Let's run the Cartel.</span></h2><p>Your storefront control centre. Live store data from the secure DripCartel API.</p></div><button class="btn primary" id="addProductDashboard">＋ Add Product</button></div>
+  <div class="admin-kpis">
+    <div><span>Revenue</span><strong id="kpiRevenue">R0</strong><small>Live paid-order data</small></div>
+    <div><span>Orders</span><strong id="kpiOrders">0</strong><small>All statuses</small></div>
+    <div><span>Customers</span><strong id="kpiCustomers">0</strong><small>Live active accounts</small></div>
+    <div><span>Products</span><strong id="kpiProducts">0</strong><small>Catalogue items</small></div>
+  </div>
+  <div class="admin-grid-two">
+    <div class="admin-panel"><div class="panel-head"><div><p class="eyebrow">SALES</p><h3>Revenue overview</h3></div><span class="status live">Live data</span></div><p class="admin-panel-note">Revenue is calculated from server-confirmed paid orders. The dashboard never uses demo sales figures.</p></div>
+    <div class="admin-panel"><div class="panel-head"><div><p class="eyebrow">ORDERS</p><h3>Order status</h3></div></div><div class="status-bars"><div><span>Pending</span><b style="width:0%"></b><em>0</em></div><div><span>Paid</span><b style="width:0%"></b><em>0</em></div><div><span>Processing</span><b style="width:0%"></b><em>0</em></div><div><span>Shipped</span><b style="width:0%"></b><em>0</em></div><div><span>Completed</span><b style="width:0%"></b><em>0</em></div></div></div>
+  </div>
+  <div class="admin-panel"><div class="panel-head"><div><p class="eyebrow">INVENTORY</p><h3>Low stock products</h3></div><button class="table-action" id="manageInventoryBtn">Manage inventory →</button></div><div id="lowStockList"></div></div>
+</section>
+
+<section id="products" class="admin-section">
+  <div class="admin-welcome"><div><p class="eyebrow">CATALOGUE</p><h2>Products & <span>Inventory.</span></h2><p>Manage products, categories, sizes, colours, prices and stock.</p></div><button class="btn primary" id="addProductCatalogue">＋ Add Product</button></div>
+  <div class="subnav"><button class="subtab active" data-product-tab="all">All Products</button><button class="subtab" data-product-tab="categories">Categories</button><button class="subtab" data-product-tab="sizes">Sizes</button><button class="subtab" data-product-tab="colours">Colours</button><button class="subtab" data-product-tab="inventory">Inventory</button></div>
+  <div id="productPanel" class="admin-panel"><div class="panel-head"><div><p class="eyebrow">PRODUCT CATALOGUE</p><h3>Manage products</h3></div><input id="adminSearch" type="search" placeholder="Search products..."></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead><tbody id="adminProductRows"></tbody></table></div></div>
+</section>
+
+<section id="orders" class="admin-section">
+  <div class="admin-welcome"><div><p class="eyebrow">FULFILMENT</p><h2>Orders <span>Centre.</span></h2><p>Track every order from pending payment through delivery.</p></div></div>
+  <div class="subnav order-tabs"><button class="subtab active">All</button><button class="subtab">Pending</button><button class="subtab">Paid</button><button class="subtab">Processing</button><button class="subtab">Shipped</button><button class="subtab">Completed</button></div>
+  <div class="admin-panel"><table class="admin-table"><thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th><th>Proof</th></tr></thead><tbody id="adminOrderRows"></tbody></table></div>
+</section>
+
+<section id="customers" class="admin-section">
+  <div class="admin-welcome"><div><p class="eyebrow">COMMUNITY</p><h2>Customers <span>Centre.</span></h2><p>Customer accounts and order history are stored server-side and protected by administrator authentication.</p></div></div>
+  <div class="admin-panel"><div class="empty-admin"><img src="assets/dripcartel-icon.webp"><h3>Customer management ready</h3><p>Customer records are stored in PostgreSQL and orders are linked to customer accounts.</p></div></div>
+</section>
+
+<section id="discounts" class="admin-section">
+  <div class="admin-welcome"><div><p class="eyebrow">PROMOTIONS</p><h2>Discounts & <span>Offers.</span></h2><p>Create promo codes for drops, seasonal sales and customer campaigns.</p></div><button class="btn primary" id="createDiscountBtn">＋ Create Discount</button></div>
+  <div class="discount-cards"><div class="discount-card"><b>NO ACTIVE PROMOTIONS</b><span>—</span><small>Create a promotion after a promotions table/API is enabled.</small></div></div>
+</section>
+
+<section id="shipping" class="admin-section">
+  <div class="admin-welcome"><div><p class="eyebrow">DELIVERY</p><h2>Shipping <span>Settings.</span></h2><p>Configure delivery zones, rates and free-shipping thresholds.</p></div></div>
+  <div class="admin-panel settings-grid"><label>Standard delivery<input id="standardShipping" type="number" min="0" step="0.01" value="60"></label><label>Free shipping threshold<input id="freeShippingThreshold" type="number" min="0" step="0.01" value="1000"></label><label>Default country<select id="storeCountry"><option value="ZA">South Africa</option></select></label><button class="btn primary" id="saveShippingBtn" type="button">Save Shipping</button></div>
+</section>
+
+<section id="settings" class="admin-section">
+  <div class="admin-welcome"><div><p class="eyebrow">SYSTEM</p><h2>Store <span>Settings.</span></h2><p>Operational settings for the storefront and connected services.</p></div></div>
+  <div class="admin-panel settings-grid"><label>Store name<input id="storeName" value="DripCartel"></label><label>Tagline<input id="storeTagline" value="For The Dripists"></label><label>Currency<select id="storeCurrency"><option value="ZAR">ZAR — R</option></select></label><label>Store status<select id="storeStatus"><option value="open">Open</option><option value="closed">Closed</option></select></label><button class="btn primary" id="saveSettingsBtn" type="button">Save Settings</button></div>
+  <div class="admin-panel tips"><p class="eyebrow">NEXT STAGE</p><h3>Production connections</h3><p>Authentication, PostgreSQL, inventory, orders and Paystack payments are server-backed. Configure WhatsApp and payment secrets in .env before production.</p></div>
+</section>
+</main></div>
+
+<div id="productEditor" class="modal-wrap"><div class="modal editor-modal"><button class="modal-close" id="closeEditor">×</button><p class="eyebrow">PRODUCT EDITOR</p><h2 id="editorTitle">Add Product</h2><form id="productForm" class="product-form"><input type="hidden" id="productId">
+<label>Product name<input id="productName" required></label><label>Category<select id="productCategory"><option>T-Shirts</option><option>Hoodies</option><option>Caps</option><option>Tote Bags</option><option>Trousers</option></select></label>
+<div class="form-row"><label>Price (R)<input id="productPrice" type="number" min="0" step=".01" required></label><label>Stock<input id="productStock" type="number" min="0" required></label></div>
+<label>Sizes<input id="productSizes" placeholder="S, M, L, XL, XXL"></label><label>Colours<input id="productColours" placeholder="Black, White, Purple"></label><label>Description<textarea id="productDescription" rows="4"></textarea></label><label>Product image<input id="productImage" type="file" accept="image/*"></label><div id="imagePreview" class="image-preview"></div>
+<div class="form-actions"><button type="button" class="btn ghost" id="cancelEditor">Cancel</button><button class="btn primary">Save Product</button></div></form></div></div>
+<div id="proofViewer" class="modal-wrap"><div class="modal proof-modal"><button class="modal-close" id="closeProof">×</button><p class="eyebrow">PAYMENT VERIFICATION</p><h2>Proof of <span>payment.</span></h2><div id="proofFrame" class="proof-frame"></div></div></div>
+<div id="toast" class="toast"></div>
+
+<script src="src/scripts/config.js"></script>
+<script src="src/scripts/store.js"></script>
+<script src="src/scripts/common.js" defer></script>
+<script src="src/scripts/admin.js" defer></script>
+
+</body></html>

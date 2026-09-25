@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DripCartel — My Account</title><link rel="icon" href="assets/dripcartel-icon.webp"><link rel="stylesheet" href="src/styles/style.css"><link rel="stylesheet" href="src/styles/home.css"><link rel="stylesheet" href="src/styles/account.css"></head>
+<body data-page="account">
+<header class="site-header">
+<a class="brand" href="index.html" data-transition><img src="assets/dripcartel-icon.webp"><span class="brand-lockup"><strong class="brand-name">DRIP<span>CARTEL</span></strong><small>FOR THE DRIPISTS</small></span></a>
+<nav class="desktop-nav"><a href="index.html" data-transition>Home</a><a href="index.html#shop" data-transition>Shop</a><a href="index.html#story" data-transition>Our Story</a></nav>
+<div class="header-actions"><button class="icon-btn" id="themeBtn">☾</button><a class="btn small primary" href="index.html" data-transition>Shop</a></div>
+</header>
+<div id="transitionOverlay" class="transition-overlay" aria-hidden="true"><img src="assets/dripcartel-icon.webp" alt="DripCartel" width="140" height="140"></div>
+<main class="account-main">
+<div class="account-hero"><p class="eyebrow">MY DRIPCARTEL</p><h1>Your <span>Account.</span></h1><p>Manage your profile, orders, wishlist and delivery details.</p></div>
+<section class="account-auth" id="accountAuth" aria-live="polite">
+<div class="auth-card" id="authCard">
+<p class="eyebrow">WELCOME TO DRIPCARTEL</p><h2 id="authTitle">Sign in to your <span>Account.</span></h2><p class="auth-note" id="authNote">Sign in to view your account, orders and saved pieces. New here? Create an account below.</p>
+<div class="auth-tabs"><button class="auth-tab active" type="button" data-auth-tab="signin">Sign in</button><button class="auth-tab" type="button" data-auth-tab="signup">Create account</button></div>
+<form id="signInForm" class="account-form auth-form" novalidate><label>Email<input id="signInEmail" type="email" autocomplete="email" required></label><label>Password<input id="signInPassword" type="password" autocomplete="current-password" required></label><button class="btn primary" type="submit">Sign in</button><button class="auth-link" id="forgotPasswordLink" type="button">Forgot your password?</button><p class="auth-error" id="signInError" role="alert"></p></form>
+<form id="signUpForm" class="account-form auth-form" novalidate hidden><label>First name<input id="signUpFirstName" type="text" autocomplete="given-name" minlength="2" required></label><label>Last name<input id="signUpLastName" type="text" autocomplete="family-name" minlength="2" required></label><label>Email<input id="signUpEmail" type="email" autocomplete="email" required></label><label>WhatsApp number<input id="signUpPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. +27 82 123 4567" required><small class="field-help">Use a WhatsApp-enabled number. We will send your verification code there.</small></label><label>Password<input id="signUpPassword" type="password" autocomplete="new-password" minlength="10" required></label><label>Confirm password<input id="signUpPasswordConfirm" type="password" autocomplete="new-password" minlength="10" required></label><button class="btn primary" type="submit">Create account</button><p class="auth-help">We will send a 6-digit verification code to your WhatsApp number before your account is activated.</p><p class="auth-error" id="signUpError" role="alert"></p></form>
+<form id="verifyForm" class="account-form auth-form" novalidate hidden><label>WhatsApp number<input id="verifyPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+27 82 123 4567" required></label><label>Verification code<input id="verifyCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="6-digit code" required></label><button class="btn primary" type="submit">Verify WhatsApp</button><button class="auth-link" id="resendVerificationBtn" type="button">Send a new code</button><button class="auth-link" id="backToSignInFromVerify" type="button">Back to sign in</button><p class="auth-help">Your code expires after 10 minutes and can only be used once.</p><p class="auth-error" id="verifyError" role="alert"></p></form>
+<form id="forgotForm" class="account-form auth-form" novalidate hidden><label>WhatsApp number<input id="forgotPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+27 82 123 4567" required></label><button class="btn primary" type="submit">Send WhatsApp reset</button><button class="auth-link" id="backToSignInFromForgot" type="button">Back to sign in</button><p class="auth-help">If an account exists for this WhatsApp number, we'll send password-reset instructions there.</p><p class="auth-error" id="forgotError" role="alert"></p></form>
+</div></section>
+<div class="account-layout" id="accountDashboard" hidden>
+<aside class="account-nav">
+<div class="account-profile"><div class="account-avatar" id="accountAvatar">DC</div><div><b id="accountDisplayName">Dripist</b><small>Member since 2026</small></div></div>
+<button class="account-tab active" data-tab="profile">Profile</button><button class="account-tab" data-tab="orders">Orders</button><button class="account-tab" data-tab="wishlist">Wishlist</button><button class="account-tab" data-tab="addresses">Addresses</button><button class="account-tab" data-tab="payments">Payment methods</button><button class="account-tab" data-tab="settings">Account settings</button><button class="account-tab logout" id="logoutBtn">Logout</button>
+</aside>
+<div class="account-panels">
+<section id="profile" class="account-panel active"><p class="eyebrow">PROFILE</p><h2>Welcome, <span id="accountWelcomeName">Dripist</span>.</h2><div class="account-form"><label>First name<input id="accountFirstName" value=""></label><label>Last name<input id="accountLastName" value=""></label><label>Email<input id="accountEmail" type="email" value="" readonly></label><label>WhatsApp number<input id="accountPhone" type="tel" value="" readonly></label><button class="btn primary" id="saveProfileBtn" type="button">Save changes</button></div></section>
+<section id="orders" class="account-panel"><p class="eyebrow">ORDERS</p><h2>Your orders.</h2><div id="accountOrders" class="account-orders"></div></section>
+<section id="wishlist" class="account-panel"><p class="eyebrow">FAVOURITES</p><h2>Your wishlist.</h2><div id="wishlistItems" class="wishlist-items"></div></section>
+<section id="addresses" class="account-panel"><p class="eyebrow">DELIVERY</p><h2>Your addresses.</h2><div id="accountAddresses"></div></section>
+<section id="payments" class="account-panel"><p class="eyebrow">PAYMENTS</p><h2>Secure payments.</h2><div class="empty-account"><p>DripCartel does not store your card details. Payments are completed securely through our payment provider.</p></div></section>
+<section id="settings" class="account-panel"><p class="eyebrow">ACCOUNT</p><h2>Account settings.</h2><div class="account-form"><label>Language<select><option>English</option></select></label><label>Marketing emails<select><option>Subscribed</option><option>Unsubscribed</option></select></label><button class="btn primary" id="saveSettingsBtn" type="button">Save settings</button></div></section>
+</div></div>
+</main>
+<footer><div class="footer-brand"><img src="assets/dripcartel-icon.webp"width="180" height="180" ><div><strong>DRIP<span>CARTEL</span></strong><small>FOR THE DRIPISTS</small></div></div><p>© 2026 DripCartel · Est. 2025</p></footer>
+
+<!-- Persistent cart, same markup/behaviour as index.html, wired by home.js -->
+<button class="cart" id="cartBtn">CART · <span id="cartCount">0</span></button>
+
+<div class="cart-modal" id="cartModal" aria-hidden="true">
+    <div class="cart-box" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1">
+        <button class="cart-close" id="closeCart" type="button" aria-label="Close cart">×</button>
+        <div class="kicker">YOUR CART</div>
+        <h2 id="cartTitle">Your <span>Drip.</span></h2>
+        <div id="cartItems"></div>
+        <div class="cart-total"><span>Total</span><strong id="cartTotal">R0.00</strong></div>
+        <div class="delivery-total"><span>Delivery</span><strong id="deliveryFee">Free</strong></div>
+        <button class="btn primary full" id="checkoutBtn" type="button">Checkout</button>
+    </div>
+</div>
+
+<div class="cart-modal checkout-modal" id="checkoutModal" aria-hidden="true">
+    <div class="cart-box checkout-box" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" tabindex="-1">
+        <button class="cart-close" id="closeCheckout" type="button" aria-label="Close checkout">×</button>
+        <div class="kicker">CHECKOUT</div>
+        <h2 id="checkoutTitle">Delivery <span>details.</span></h2>
+        <div class="checkout-details" id="checkoutDetails">
+            <p class="checkout-details-title">Delivery details</p>
+            <label for="checkoutName">Full name<input id="checkoutName" type="text" autocomplete="name" required></label>
+            <label for="checkoutEmail">Email address<input id="checkoutEmail" type="email" autocomplete="email" required></label>
+            <label for="checkoutPhone">WhatsApp / cellphone number<input id="checkoutPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 082 123 4567" pattern="[0-9+() -]{7,}" required></label>
+            <label class="checkout-wide" for="checkoutAddress">Street address<input id="checkoutAddress" type="text" autocomplete="street-address" required></label>
+            <label for="checkoutCity">City / town<input id="checkoutCity" type="text" autocomplete="address-level2" placeholder="Witbank / Emalahleni" required></label>
+            <label for="checkoutProvince">Province / state<input id="checkoutProvince" type="text" autocomplete="address-level1" required></label>
+            <label for="checkoutPostal">Postal code<input id="checkoutPostal" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9A-Za-z -]{3,10}" required></label>
+            <label for="checkoutCountryDisplay">Delivery country<input id="checkoutCountryDisplay" type="text" value="South Africa" readonly><input id="checkoutCountry" type="hidden" value="ZA"></label>
+        </div>
+        <div class="delivery-total"><span>Delivery</span><strong>Free Around Witbank</strong></div>
+        <button class="btn primary full" id="confirmCheckoutBtn" type="button">Complete checkout</button>
+    </div>
+</div>
+
+<div class="cart-modal payment-modal" id="paymentModal" aria-hidden="true">
+    <div class="cart-box payment-box" role="dialog" aria-modal="true" aria-labelledby="paymentTitle" tabindex="-1">
+        <button class="cart-close" id="closePayment" type="button" aria-label="Close payment details">×</button>
+        <div id="paymentContent" class="payment-content"></div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="src/scripts/config.js"></script>
+<script src="src/scripts/store.js"></script>
+<script src="src/scripts/common.js" defer></script>
+<script src="src/scripts/account.js" defer></script>
+</body></html>

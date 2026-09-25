@@ -1,0 +1,18 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies and runtime files
+node_modules/
+*.log
+.DS_Store
+
+# Local database dumps/backups
+*.sql.gz
+*.dump
+*.backup
+
+# Local coverage/build output
+coverage/
+dist/
